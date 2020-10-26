@@ -5,25 +5,12 @@ const requestListener = (req, res) => {
   const method = req.method;
   if (url === "/") {
     res.write("<html>");
-    res.write("<head><title>HEllo There!</title></head>");
+    res.write("<head><title>Hello There!</title></head>");
     res.write(
-      '<body><h1>Hey there friends, welcome to the mood tracker!</h1><p>Enter your mood below and hit send to save your mood.</p><form action = "/mood" method="POST"><input type = "text" name="mood"><button type="submit">Send</button></body>'
+      '<body><h1>Testing</h1><p>Testing</p></body>'
     );
     res.write("</html>");
     return res.end();
-  }
-  if (url === "/mood" && method === "POST") {
-    const body = [];
-    req.on("data", (chunk) => {
-      body.push(chunk);
-    });
-    return req.on("end", () => {
-      const parsedBody = Buffer.concat(body).toString();
-      console.log(parsedBody)
-      const mood = parsedBody.split("=")[1];
-      fs.writeFile("user_mood.txt", mood, () => {});
-      return res.end();
-    });
   }
 };
 
